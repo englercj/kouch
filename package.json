@@ -1,0 +1,25 @@
+{
+  "name": "module-boilerplate",
+  "version": "0.0.0",
+  "description": "This is a quick boilerplate for a new npm module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/englercj/module-boilerplate.git"
+  },
+  "author": "Chad Engler <chad@pantherdev.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/englercj/module-boilerplate/issues"
+  },
+  "homepage": "https://github.com/englercj/module-boilerplate",
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "gulp-mocha": "~0.5.1",
+    "gulp": "~3.8.6",
+    "gulp-jshint": "~1.7.1"
+  }
+}
