@@ -3,10 +3,10 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint');
 
 /*****
- * JSHint task, lints the src and test *.js files.
+ * JSHint task, lints the lib and test *.js files.
  *****/
 gulp.task('jshint', function () {
-    return gulp.src(['./src/**/*.js', './test/**/*.js'])
+    return gulp.src(['./lib/**/*.js', './test/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -26,3 +26,8 @@ gulp.task('test', function () {
  * Default task, runs jshint and test tasks.
  *****/
 gulp.task('default', ['jshint', 'test']);
+
+/*****
+ * CI test task, runs jshint and test tasks.
+ *****/
+gulp.task('testci', ['jshint', 'test']);
