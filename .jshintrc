@@ -14,7 +14,7 @@
 
     "bitwise"       : false,    // Disallow bitwise operators (&, |, ^, etc.).
     "camelcase"     : true,     // Force all variable names to use either camelCase or UPPER_CASE.
-    "curly"         : true,     // Require {} for every new block or scope.
+    "curly"         : false,    // Require {} for every new block or scope.
     "eqeqeq"        : true,     // Require triple equals i.e. `===`.
     "es3"           : false,    // Enforce conforming to ECMAScript 3.
     "forin"         : false,    // Disallow `for in` loops without `hasOwnPrototype`.
@@ -38,7 +38,7 @@
     "maxlen"        : 120,      // Require that all lines are 100 characters or less.
     "predef"        : [         // Register predefined globals used throughout the code.
         // Predef Mocha BDD interface
-        "describe", "it"
+        "describe", "it", "before", "beforeEach", "after", "afterEach"
     ],
 
     // == Relaxing Options ================================================
