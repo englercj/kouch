@@ -22,5 +22,10 @@
     "gulp-mocha": "~0.5.1",
     "gulp": "~3.8.6",
     "gulp-jshint": "~1.7.1"
+  },
+  "dependencies": {
+    "couchbase": "^1.2.4",
+    "regexp-clone": "0.0.1",
+    "sliced": "0.0.5"
   }
 }

@@ -1,6 +1,8 @@
-# Module Boilerplate
+# Kouch
 
-Simple setup of basic files I find myself making for every module I write.
+Couchbase ODM heravily inspired by [`mongoose`][0].
+
+[0]: https://github.com/LearnBoost/mongoose
 
 ## License
 
