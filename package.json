@@ -24,7 +24,7 @@
     "gulp-jshint": "~1.7.1"
   },
   "dependencies": {
-    "couchbase": "^1.2.4",
+    "couchbase": "git+https://github.com/couchbase/couchnode.git",
     "regexp-clone": "0.0.1",
     "sliced": "0.0.5"
   }

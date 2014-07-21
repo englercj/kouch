@@ -2,6 +2,14 @@ var expect = require('chai').expect,
     kouch = require('../../lib/');
 
 describe('Kouch', function () {
+    before(function () {
+        kouch.connect(null, { name: 'test', password: '' }, true);
+    });
+
+    after(function () {
+        kouch.disconnect();
+    });
+
     it('General case usage', function () {
         expect(true).to.be.ok;
 
@@ -32,23 +40,23 @@ describe('Kouch', function () {
 
         // a getter
         CommentSchema.path('bio').get(function (val) {
-            return val;
+            return val.trim();
         });
 
         // middleware
         CommentSchema.pre('save', function (next) {
-            notify(this.get('email'));
+            // notify(this.get('email'));
             next();
         });
 
         // instance methods on a created model
         CommentSchema.methods.findSimilarTypes = function (cb) {
-            return this.model('Animal').find({ type: this.type }, cb);
+            // return this.model('Animal').find({ type: this.type }, cb);
         };
 
         // static method on the model created from this schema
         CommentSchema.statics.findByName = function (name, cb) {
-            this.find({ name: new RegExp(name, 'i') }, cb);
+            // this.find({ name: new RegExp(name, 'i') }, cb);
         };
 
         // virtual property that is not persisted to the DB
@@ -64,7 +72,7 @@ describe('Kouch', function () {
 
 
         // create the model from the schema
-        var CommentModel = kouch.model('Comment', 'derp', CommentSchema);
+        var CommentModel = kouch.model('Comment', 'test', CommentSchema);
 
         var doc,
             comment = new CommentModel(doc = {
@@ -78,6 +86,10 @@ describe('Kouch', function () {
                 body: 'Comment body!'
             });
 
+        // check schema options
+        expect(CommentSchema.get('key.prefix')).to.equal('comments');
+        expect(CommentSchema.get('key.delimeter')).to.equal(':');
+
         // check document getters
         expect(comment.name.first).to.equal(doc.name.first);
         expect(comment.name.last).to.equal(doc.name.last);
@@ -87,6 +99,9 @@ describe('Kouch', function () {
         expect(comment.buff).to.equal(doc.buff);
         expect(comment.body).to.equal(doc.body);
 
+        // check bio getter
+        comment.bio = '       space         ';
+        expect(comment.bio).to.equal('space');
 
         // check methods
         expect(comment.findSimilarTypes).to.be.a('function');
@@ -96,6 +111,10 @@ describe('Kouch', function () {
 
         // check virtual getter
         expect(comment.name.full).to.equal('Chad Engler');
+
+        // check setter method
+        comment.name.first = 'john';
+        expect(comment.name.first).to.equal('John'); //setter modifies the value
 
         // check virtual setter
         comment.name.full = 'Brittany Engler';
