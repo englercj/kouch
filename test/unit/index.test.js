@@ -5,6 +5,10 @@ describe('Kouch', function () {
     it('General case usage', function () {
         expect(true).to.be.ok;
 
+        var getDate = function (val) {
+            return (val.getMonth() + 1) + "/" + val.getDate() + "/" + val.getFullYear();
+        };
+
         var CommentSchema = new kouch.Schema({
             name: {
                 first: { type: String, default: 'first' },
@@ -12,7 +16,7 @@ describe('Kouch', function () {
             },
             age : { type: Number, min: 18 },
             bio : { type: String, match: /[a-z]/ },
-            date: { type: Date, default: Date.now, get: function (val) { return (val.getMonth() + 1) + "/" + val.getDate() + "/" + val.getFullYear(); } },
+            date: { type: Date, default: Date.now, get: getDate  },
             buff: Buffer,
             body: String
         });
@@ -79,7 +83,7 @@ describe('Kouch', function () {
         expect(comment.name.last).to.equal(doc.name.last);
         expect(comment.age).to.equal(doc.age);
         expect(comment.bio).to.equal(doc.bio);
-        expect(comment.date).to.be.equal('7/20/2014'); //getter modifies the value
+        expect(comment.date).to.be.equal(getDate(new Date())); //getter modifies the value
         expect(comment.buff).to.equal(doc.buff);
         expect(comment.body).to.equal(doc.body);
 
