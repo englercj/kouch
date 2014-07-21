@@ -11,8 +11,6 @@ describe('Kouch', function () {
     });
 
     it('General case usage', function () {
-        expect(true).to.be.ok;
-
         var getDate = function (val) {
             return (val.getMonth() + 1) + "/" + val.getDate() + "/" + val.getFullYear();
         };
@@ -45,7 +43,9 @@ describe('Kouch', function () {
 
         // middleware
         CommentSchema.pre('save', function (next) {
+            this.name.first += '-pre-save';
             // notify(this.get('email'));
+            expect(this.name.first).to.equal('Brittany-pre-save');
             next();
         });
 
@@ -80,7 +80,7 @@ describe('Kouch', function () {
                     first: 'Chad',
                     last: 'Engler'
                 },
-                age: 15,
+                age: 21,
                 bio: 'I am a person!',
                 buff: new Buffer(16),
                 body: 'Comment body!'
@@ -121,5 +121,8 @@ describe('Kouch', function () {
         expect(comment.name.first).to.equal('Brittany');
         expect(comment.name.last).to.equal('Engler');
         expect(comment.name.full).to.equal('Brittany Engler');
+
+        // check saving
+        comment.save();
     });
 });

@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     mocha = require('gulp-mocha'),
+    cover = require('gulp-coverage'),
     jshint = require('gulp-jshint');
 
 /*****
@@ -20,6 +21,23 @@ gulp.task('test', function () {
                 ui: 'bdd',
                 reporter: 'spec'
             }));
+});
+
+/*****
+ * Coverage task, runs mocha tests and covers the lib files.
+ *****/
+gulp.task('cover', function () {
+    return gulp.src('./test/unit/**/*.test.js', { read: false })
+            .pipe(cover.instrument({
+                pattern: ['./lib/*.js']
+            }))
+            .pipe(mocha({
+                ui: 'bdd',
+                reporter: 'spec'
+            }))
+            .pipe(cover.gather())
+            .pipe(cover.format())
+            .pipe(gulp.dest('./'));
 });
 
 /*****

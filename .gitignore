@@ -21,3 +21,6 @@ node_modules/
 test/result/
 !.gitkeep
 *__temp
+.coverdata/
+.coverrun
+coverage.html
