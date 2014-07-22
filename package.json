@@ -18,16 +18,16 @@
   },
   "homepage": "https://github.com/englercj/module-boilerplate",
   "devDependencies": {
-    "chai": "~1.9.1",
-    "gulp": "~3.8.6",
+    "chai": "^1.9.1",
+    "gulp": "^3.8.6",
     "gulp-coverage": "^0.1.24",
-    "gulp-jshint": "~1.7.1",
-    "gulp-mocha": "~0.5.1"
+    "gulp-jshint": "^1.7.1",
+    "gulp-mocha": "^0.5.1"
   },
   "dependencies": {
-    "couchbase": "git+https://github.com/couchbase/couchnode.git",
+    "couchbase": "2.0.0-dp1",
     "hooks": "^0.3.2",
-    "regexp-clone": "~0.0.1",
-    "sliced": "~0.0.5"
+    "regexp-clone": "^0.0.1",
+    "sliced": "^0.0.5"
   }
 }
