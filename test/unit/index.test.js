@@ -2,10 +2,6 @@ var expect = require('chai').expect,
     kouch = require('../../lib/');
 
 describe('Kouch', function () {
-    afterEach(function () {
-        kouch.disconnect();
-    });
-
     it('Should export the proper functions', function () {
         // exported data
         expect(kouch.buckets).to.be.an('object');
@@ -64,9 +60,7 @@ describe('Kouch', function () {
     });
 
     describe('#model', function () {
-        it('Should create a schema instance when a plain object is passed', function () {
-
-        });
+        it('Should create a schema instance for you when a plain object is passed');
 
         it('Should return the model if it has been created already');
 
@@ -78,10 +72,6 @@ describe('Kouch', function () {
     describe('general use', function () {
         before(function () {
             kouch.connect(null, { name: 'test', password: '' }, true);
-        });
-
-        after(function () {
-            kouch.disconnect();
         });
 
         it('General case usage', function () {
