@@ -28,6 +28,7 @@
     "couchbase": "2.0.0-dp1",
     "hooks": "^0.3.2",
     "regexp-clone": "^0.0.1",
-    "sliced": "^0.0.5"
+    "sliced": "^0.0.5",
+    "uuid": "^1.4.1"
   }
 }

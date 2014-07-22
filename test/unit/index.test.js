@@ -172,6 +172,7 @@ describe('Kouch', function () {
             expect(comment.date).to.be.equal(getDate(new Date())); //getter modifies the value
             expect(comment.buff).to.equal(doc.buff);
             expect(comment.body).to.equal(doc.body);
+            expect(comment._id).to.be.a('string');
 
             // check bio getter
             comment.bio = '       space         ';
@@ -184,6 +185,7 @@ describe('Kouch', function () {
             expect(CommentModel.findByName).to.be.a('function');
 
             // check virtual getter
+            expect(comment.id).to.equal(comment._id);
             expect(comment.name.full).to.equal('Chad Engler');
 
             // check setter method
