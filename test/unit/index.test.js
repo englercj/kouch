@@ -125,8 +125,7 @@ describe('Kouch', function () {
                 });
 
             // check schema options
-            expect(CommentSchema.get('key.prefix')).to.equal('comments');
-            expect(CommentSchema.get('key.delimeter')).to.equal(':');
+            expect(CommentSchema.get('key.prefix')).to.equal('comments:');
 
             // check document getters
             expect(comment.name.first).to.equal(doc.name.first);
