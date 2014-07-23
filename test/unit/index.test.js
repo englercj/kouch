@@ -1,4 +1,5 @@
 var expect = require('chai').expect,
+    db = require('../fixtures/db'),
     kouch = require('../../lib/');
 
 describe('Kouch', function () {
@@ -7,7 +8,7 @@ describe('Kouch', function () {
         expect(kouch.buckets).to.be.an('object');
         expect(kouch.models).to.be.an('object');
         expect(kouch.options).to.be.an('object');
-        expect(kouch.cluster).to.be.null;
+        expect(kouch.cluster).to.be.an('object');
 
         // instance methods
         expect(kouch.set).to.be.a('function');
@@ -30,29 +31,6 @@ describe('Kouch', function () {
         });
     });
 
-    describe('#connect', function () {
-        it('Should throw an error when buckets is the wrong type', function () {
-            expect(
-                kouch.connect.bind(kouch, 'dsn', 'nope!', true)
-            )
-            .to.throw(TypeError);
-        });
-
-        it('Should opena bucket if an object is passed', function () {
-            var bucketConfig = { name: 'buck', password: 'derp' };
-
-            kouch.connect('dsn', bucketConfig, true);
-
-            expect(kouch.buckets[bucketConfig.name]).to.be.an('object');
-        });
-    });
-
-    describe('#disconnect', function () {
-        it('Should call the shutdown method for the bucket name passed');
-
-        it('Should call the shutdown methods for each bucket if no name is passed');
-    });
-
     describe('#openBucket', function () {
         it('Should return the same bucket if the name already exists');
 
@@ -70,10 +48,6 @@ describe('Kouch', function () {
     });
 
     describe('general use', function () {
-        before(function () {
-            kouch.connect(null, { name: 'test', password: '' }, true);
-        });
-
         it('General case usage', function () {
             var getDate = function (val) {
                 return (val.getMonth() + 1) + "/" + val.getDate() + "/" + val.getFullYear();
@@ -136,7 +110,7 @@ describe('Kouch', function () {
 
 
             // create the model from the schema
-            var CommentModel = kouch.model('Comment', 'test', CommentSchema);
+            var CommentModel = kouch.model('Comment', 'default', CommentSchema);
 
             var doc,
                 comment = new CommentModel(doc = {
