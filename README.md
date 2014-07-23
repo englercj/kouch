@@ -1,6 +1,6 @@
 # Kouch
 
-Couchbase ODM heravily inspired by [`mongoose`][0].
+Couchbase ODM heavily inspired by [`mongoose`][0].
 
 **WARNING:** Still heavily in development, incomplete, and only lightly tested.
 
