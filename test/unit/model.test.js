@@ -95,6 +95,99 @@ describe('Kouch.Model', function () {
         });
     });
 
+    describe('#model', function () {
+
+    });
+
+    describe('#isModified', function () {
+        it('Should be modified when created from an object', function () {
+            var doc = { _id: 'modifiedTest', name: 'modified' },
+                model = new TestModel(doc);
+
+            expect(model.isModified()).to.be.true;
+        });
+
+        it('Should not be modified when initially loaded', function (done) {
+            TestModel.load('load1', function (err, model) {
+                expect(err).to.not.exist;
+                expect(model.isModified()).to.be.false;
+                done(err);
+            });
+        });
+
+        it('Should set properly check the modified state of a single path', function () {
+            var doc = { _id: 'modifiedTest', name: 'not modified' },
+                model = new TestModel(doc);
+
+            expect(model.isModified()).to.be.true;
+
+            model.resetModified('name');
+
+            expect(model.isModified()).to.be.true;
+            expect(model.isModified('_id')).to.be.true;
+            expect(model.isModified('name')).to.be.false;
+        });
+    });
+
+    describe('#modifiedPaths', function () {
+        it('Should return all the paths that are modified', function (done) {
+            TestModel.load('load1', function (err, model) {
+                expect(err).to.not.exist;
+                expect(model.modifiedPaths()).to.be.empty;
+
+                model.name = 'CHANGED';
+
+                expect(model.modifiedPaths()).to.eql(['name']);
+                done(err);
+            });
+        });
+    });
+
+    describe('#setModified', function () {
+        it('Should set the path as modified', function () {
+            var doc = { _id: 'modifiedTest', name: 'not modified' },
+                model = new TestModel(doc);
+
+            expect(model.isModified()).to.be.true;
+
+            model.resetModified();
+
+            expect(model.isModified()).to.be.false;
+
+            model.setModified('_id');
+
+            expect(model.isModified()).to.be.true;
+            expect(model.isModified('_id')).to.be.true;
+            expect(model.isModified('name')).to.be.false;
+        });
+    });
+
+    describe('#resetModified', function () {
+        it('Should set reset the modified state of the entire model', function () {
+            var doc = { _id: 'modifiedTest', name: 'not modified' },
+                model = new TestModel(doc);
+
+            expect(model.isModified()).to.be.true;
+
+            model.resetModified();
+
+            expect(model.isModified()).to.be.false;
+        });
+
+        it('Should set reset the modified state of a single path', function () {
+            var doc = { _id: 'modifiedTest', name: 'not modified' },
+                model = new TestModel(doc);
+
+            expect(model.isModified()).to.be.true;
+
+            model.resetModified('name');
+
+            expect(model.isModified()).to.be.true;
+            expect(model.isModified('_id')).to.be.true;
+            expect(model.isModified('name')).to.be.false;
+        });
+    });
+
     ///////
     // Statics
     ///////

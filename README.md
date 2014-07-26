@@ -36,6 +36,11 @@ UserSchema.path('name.first').set(function (val) {
 UserSchema.pre('save', function (next) {
     var user = this;
 
+    // only hash the password if the password has changed
+    if (!this.isModified('password')) {
+        return next();
+    }
+
     bcrypt.hash(user.password, 8, function(err, hash) {
         if (err) return next(err);
 
@@ -95,7 +100,7 @@ user.save();
 - Views
 - Ref Docs
 - [DONE] ~~Required / Optional fields~~
-- isModified state for fields
+- [DONE] ~~isModified state for fields~~
 - If a bucket is not specified, use 'default'
 
 ## License
