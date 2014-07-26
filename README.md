@@ -99,9 +99,6 @@ user.save();
 - Queries
 - Views
 - Ref Docs
-- [DONE] ~~Required / Optional fields~~
-- [DONE] ~~isModified state for fields~~
-- [DONE] ~~If a bucket is not specified, use 'default'~~
 
 ## License
 

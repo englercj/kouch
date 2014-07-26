@@ -33,7 +33,8 @@ gulp.task('cover', function () {
             }))
             .pipe(mocha({
                 ui: 'bdd',
-                reporter: 'spec'
+                reporter: 'spec',
+                timeout: 30000
             }))
             .pipe(cover.gather())
             .pipe(cover.format())
