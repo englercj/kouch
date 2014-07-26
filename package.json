@@ -1,7 +1,7 @@
 {
-  "name": "module-boilerplate",
-  "version": "0.0.0",
-  "description": "This is a quick boilerplate for a new npm module",
+  "name": "kouch",
+  "version": "0.0.1",
+  "description": "Kouch is an ODM for couchase.",
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/englercj/module-boilerplate.git"
+    "url": "https://github.com/englercj/kouch.git"
   },
   "author": "Chad Engler <chad@pantherdev.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/englercj/module-boilerplate/issues"
+    "url": "https://github.com/englercj/kouch/issues"
   },
-  "homepage": "https://github.com/englercj/module-boilerplate",
+  "homepage": "https://github.com/englercj/kouch",
   "devDependencies": {
     "chai": "^1.9.1",
     "gulp": "^3.8.6",
