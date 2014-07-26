@@ -101,7 +101,7 @@ user.save();
 - Ref Docs
 - [DONE] ~~Required / Optional fields~~
 - [DONE] ~~isModified state for fields~~
-- If a bucket is not specified, use 'default'
+- [DONE] ~~If a bucket is not specified, use 'default'~~
 
 ## License
 
