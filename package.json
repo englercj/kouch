@@ -2,6 +2,9 @@
   "name": "kouch",
   "version": "0.0.1",
   "description": "Kouch is an ODM for couchase.",
+  "homepage": "https://github.com/englercj/kouch",
+  "author": "Chad Engler <chad@pantherdev.com>",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
@@ -11,18 +14,8 @@
     "type": "git",
     "url": "https://github.com/englercj/kouch.git"
   },
-  "author": "Chad Engler <chad@pantherdev.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/englercj/kouch/issues"
-  },
-  "homepage": "https://github.com/englercj/kouch",
-  "devDependencies": {
-    "chai": "^1.9.1",
-    "gulp": "^3.8.6",
-    "gulp-coverage": "^0.1.24",
-    "gulp-jshint": "^1.7.1",
-    "gulp-mocha": "^0.5.1"
   },
   "dependencies": {
     "couchbase": "2.0.0-dp1",
@@ -30,5 +23,12 @@
     "regexp-clone": "^0.0.1",
     "sliced": "^0.0.5",
     "uuid": "^1.4.1"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "gulp": "^3.8.6",
+    "gulp-coverage": "^0.1.24",
+    "gulp-jshint": "^1.7.1",
+    "gulp-mocha": "^0.5.1"
   }
 }
