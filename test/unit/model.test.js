@@ -75,15 +75,31 @@ describe('Kouch.Model', function () {
 
     });
 
+    describe('#toObject', function () {
+        it('Should properly serialize the model', function () {
+            var doc = { _id: 'something', name: 'le test', notInSchema: 'me' },
+                result = { _id: 'something', name: 'le test' },
+                model = new TestModel(doc);
+
+            expect(model.toObject()).to.eql(result);
+        });
+    });
+
+    describe('#toJSON', function () {
+        it('Should properly serialize the model', function () {
+            var doc = { _id: 'something', name: 'le test', notInSchema: 'me' },
+                result = { _id: 'something', name: 'le test' },
+                model = new TestModel(doc);
+
+            expect(JSON.stringify(model)).to.equal(JSON.stringify(result));
+        });
+    });
+
     ///////
     // Statics
     ///////
 
     describe('.compile', function () {
-
-    });
-
-    describe('.toJSON', function () {
 
     });
 
