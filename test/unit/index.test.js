@@ -66,8 +66,7 @@ describe('Kouch', function () {
             });
 
             // set some options on how the key is constructed
-            CommentSchema.set('key.prefix', 'comments');
-            CommentSchema.set('key.delimeter', ':');
+            CommentSchema.set('key.prefix', 'comments:');
 
             // a setter
             CommentSchema.path('name.first').set(function (val) {

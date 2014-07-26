@@ -2,7 +2,7 @@ var expect = require('chai').expect,
     db = require('../fixtures/db'),
     kouch = require('../../lib/');
 
-describe('Kouch.Model', function () {
+describe('Kouch.Schema', function () {
     describe('#ctor', function () {
 
     });

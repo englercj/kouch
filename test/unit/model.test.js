@@ -7,22 +7,27 @@ var expect = require('chai').expect,
     }),
     TestModel,
     docs = [
-        { _id: 'id1', name: 'test doc 1' },
-        { _id: 'id2', name: 'test doc 2' },
-        { _id: 'id3', name: 'test doc 3' }
+        { _id: 'load1', name: 'test doc 1' },
+        { _id: 'load2', name: 'test doc 2' },
+        { _id: 'load3', name: 'test doc 3' },
+        { _id: 'remove1', name: 'test doc 1' },
+        { _id: 'remove2', name: 'test doc 2' },
+        { _id: 'remove3', name: 'test doc 3' }
     ],
     noop = function () {};
 
 describe('Kouch.Model', function () {
     before(function (done) {
-        TestModel = kouch.model('Test', 'default', TestSchema);
+        TestModel = kouch.model('ModelTest', 'default', TestSchema);
 
         var docsToInsert = {};
         for (var i = 0; i < docs.length; ++i) {
-            docsToInsert['Test:' + docs[i]._id] = { value: docs[i] };
+            docsToInsert[TestModel.key(docs[i]._id)] = { value: docs[i] };
         }
 
-        kouch.buckets.default.insertMulti(docsToInsert, {}, done);
+        kouch.buckets.default.insertMulti(docsToInsert, {}, function (err, something) {
+            done(err);
+        });
     });
 
     describe('#ctor', function () {
@@ -84,11 +89,11 @@ describe('Kouch.Model', function () {
 
     describe('.load', function () {
         it('Should load the proper document', function (done) {
-            TestModel.load('id1', function (err, model) {
+            TestModel.load('load1', function (err, model) {
                 expect(err).to.not.exist;
                 expect(model).to.be.an.instanceOf(TestModel);
 
-                expect(model._id).to.equal('id1');
+                expect(model._id).to.equal('load1');
                 expect(model._doc).to.eql(docs[0]);
 
                 done();
@@ -96,15 +101,15 @@ describe('Kouch.Model', function () {
         });
 
         it('Should load multiple documents properly', function (done) {
-            TestModel.load(['id1', 'id2'], function (err, models) {
+            TestModel.load(['load1', 'load2'], function (err, models) {
                 expect(err).to.not.exist;
 
                 expect(models[0]).to.be.an.instanceOf(TestModel);
-                expect(models[0]._id).to.equal('id1');
+                expect(models[0]._id).to.equal('load1');
                 expect(models[0]._doc).to.eql(docs[0]);
 
                 expect(models[1]).to.be.an.instanceOf(TestModel);
-                expect(models[1]._id).to.equal('id2');
+                expect(models[1]._id).to.equal('load2');
                 expect(models[1]._doc).to.eql(docs[1]);
 
                 done();
@@ -114,10 +119,10 @@ describe('Kouch.Model', function () {
 
     describe('.remove', function () {
         it('Should remove the document properly', function (done) {
-            TestModel.remove('id1', function (err) {
+            TestModel.remove('remove1', function (err) {
                 expect(err).to.not.exist;
 
-                TestModel.load('id1', function (err, model) {
+                TestModel.load('remove1', function (err, model) {
                     expect(err).to.be.an.instanceOf(Error);
                     expect(err.message).to.contain('The key does not exist on the server');
 
@@ -127,10 +132,10 @@ describe('Kouch.Model', function () {
         });
 
         it('Should remove multiple documents properly', function (done) {
-            TestModel.remove(['id2', 'id3'], function (err) {
+            TestModel.remove(['remove2', 'remove3'], function (err) {
                 expect(err).to.not.exist;
 
-                TestModel.load('id1', function (err, model) {
+                TestModel.load('remove3', function (err, model) {
                     expect(err).to.be.an.instanceOf(Error);
                     expect(err.message).to.contain('The key does not exist on the server');
 
@@ -164,38 +169,38 @@ describe('Kouch.Model', function () {
         });
 
         it('Should create multiple documents properly', function (done) {
-            var docs = [
+            var _docs = [
                 { _id: 'multiInsert1', name: 'Multi Insert 1' },
                 { _id: 'multiInsert2', name: 'Multi Insert 2' },
                 { _id: 'multiInsert3', name: 'Multi Insert 3' },
                 { _id: 'multiInsert4', name: 'Multi Insert 4' }
             ];
 
-            TestModel.create(docs, function (err, models) {
+            TestModel.create(_docs, function (err, models) {
                 expect(err).to.not.exist;
 
                 expect(models[0]).to.be.an.instanceOf(TestModel);
                 expect(models[0]._id).to.equal('multiInsert1');
-                expect(models[0]._doc).to.eql(docs[0]);
+                expect(models[0]._doc).to.eql(_docs[0]);
 
                 expect(models[1]).to.be.an.instanceOf(TestModel);
                 expect(models[1]._id).to.equal('multiInsert2');
-                expect(models[1]._doc).to.eql(docs[1]);
+                expect(models[1]._doc).to.eql(_docs[1]);
 
                 expect(models[2]).to.be.an.instanceOf(TestModel);
                 expect(models[2]._id).to.equal('multiInsert3');
-                expect(models[2]._doc).to.eql(docs[2]);
+                expect(models[2]._doc).to.eql(_docs[2]);
 
                 TestModel.load(['multiInsert1', 'multiInsert3'], function (err, _model) {
                     expect(err).to.not.exist;
 
                     expect(models[0]).to.be.an.instanceOf(TestModel);
                     expect(models[0]._id).to.equal('multiInsert1');
-                    expect(models[0]._doc).to.eql(docs[0]);
+                    expect(models[0]._doc).to.eql(_docs[0]);
 
                     expect(models[2]).to.be.an.instanceOf(TestModel);
                     expect(models[2]._id).to.equal('multiInsert3');
-                    expect(models[2]._doc).to.eql(docs[2]);
+                    expect(models[2]._doc).to.eql(_docs[2]);
 
                     done();
                 });
