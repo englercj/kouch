@@ -93,13 +93,6 @@ var user = new UserModel({
 user.save();
 ```
 
-## TODO / Wishlist
-
-- Indexes
-- Queries
-- Views
-- Ref Docs
-
 ## License
 
 The MIT License (MIT)
