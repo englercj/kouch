@@ -2,7 +2,7 @@ var expect = require('chai').expect,
     db = require('../fixtures/db'),
     kouch = require('../../lib/'),
     TestSchema = new kouch.Schema({
-        _id: String,
+        _id: { type: String, key: true, auto: 'uuid' },
         name: String
     }),
     TestModel,
@@ -25,7 +25,8 @@ describe('Kouch.Model', function () {
             docsToInsert[TestModel.key(docs[i]._id)] = { value: docs[i] };
         }
 
-        kouch.buckets.default.insertMulti(docsToInsert, {}, function (err, something) {
+        kouch.buckets.default.insertMulti(docsToInsert, {}, function (err, result) {
+            if(err) console.log(result);
             done(err);
         });
     });
@@ -41,7 +42,7 @@ describe('Kouch.Model', function () {
             mdl.save(function (err) {
                 expect(err).to.not.exist;
 
-                expect(mdl.id).to.be.a('string');
+                expect(mdl._id).to.be.a('string');
                 expect(mdl.name).to.equal('John Smith');
                 expect(mdl.notInSchema).to.not.exist;
                 expect(mdl._doc.notInSchema).to.not.exist;

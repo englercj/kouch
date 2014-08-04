@@ -147,7 +147,6 @@ describe('Kouch', function () {
             expect(CommentModel.findByName).to.be.a('function');
 
             // check virtual getter
-            expect(comment.id).to.equal(comment._id);
             expect(comment.name.full).to.equal('Chad Engler');
 
             // check setter method
