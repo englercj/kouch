@@ -45,8 +45,3 @@ gulp.task('cover', function () {
  * Default task, runs jshint and test tasks.
  *****/
 gulp.task('default', ['jshint', 'test']);
-
-/*****
- * CI test task, runs jshint and test tasks.
- *****/
-gulp.task('testci', ['jshint', 'test']);
