@@ -233,11 +233,9 @@ describe('Kouch.Model', function () {
             TestModel.remove('remove1', function (err) {
                 expect(err).to.not.exist;
 
-                TestModel.load('remove1', function (err, model) {
+                TestModel.load('remove1', function (err) {
                     expect(err).to.be.an.instanceOf(Error);
                     expect(err.message).to.contain('The key does not exist on the server');
-
-                    expect(model).to.be.ok;
 
                     done();
                 });
@@ -248,11 +246,9 @@ describe('Kouch.Model', function () {
             TestModel.remove(['remove2', 'remove3'], function (err) {
                 expect(err).to.not.exist;
 
-                TestModel.load('remove3', function (err, model) {
+                TestModel.load('remove3', function (err) {
                     expect(err).to.be.an.instanceOf(Error);
                     expect(err.message).to.contain('The key does not exist on the server');
-
-                    expect(model).to.be.ok;
 
                     done();
                 });
