@@ -17,7 +17,7 @@ UserSchema = new kouch.Schema({
         first: String,
         last: String
     },
-    email:    String,
+    email:    { type: String, key: true},
     password: String,
     age:      { type: Number, min: 18 },
     bio:      { type: String, match: /[\w\d]+/, trim: true },
@@ -57,15 +57,15 @@ UserSchema.methods.x = function (cb) {
 
 // static method on the model created from this schema
 // will be accessible at: UserModel.authenticate
-UserSchema.statics.authenticate = function(username, password, cb) {
-    this.load(username, function (err, account) {
+UserSchema.statics.authenticate = function(email, password, cb) {
+    this.load(email, function (err, user) {
         if (err) return cb(err);
 
-        bcrypt.compare(password, account.password, function (err, isMatch) {
+        bcrypt.compare(password, user.password, function (err, isMatch) {
             if (err) return cb(err);
-            if (!isMatch) return cb(new Error('Your username and password combination is invalid.'));
+            if (!isMatch) return cb(new Error('Your email and password combination is invalid.'));
 
-            cb(null, account);
+            cb(null, user);
         });
     });
 };
