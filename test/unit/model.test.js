@@ -256,11 +256,11 @@ describe('Kouch.Model', function () {
         });
     });
 
-    describe('.create', function () {
-        it('Should create a document properly', function (done) {
+    describe('.insert', function () {
+        it('Should insert a document properly', function (done) {
             var doc = { _id: 'insert1', name: 'herp' };
 
-            TestModel.create(doc, function (err, model) {
+            TestModel.insert(doc, function (err, model) {
                 expect(err).to.not.exist;
 
                 expect(model).to.be.an.instanceOf(TestModel);
@@ -279,7 +279,7 @@ describe('Kouch.Model', function () {
             });
         });
 
-        it('Should create multiple documents properly', function (done) {
+        it('Should insert multiple documents properly', function (done) {
             var _docs = [
                 { _id: 'multiInsert1', name: 'Multi Insert 1' },
                 { _id: 'multiInsert2', name: 'Multi Insert 2' },
@@ -287,7 +287,7 @@ describe('Kouch.Model', function () {
                 { _id: 'multiInsert4', name: 'Multi Insert 4' }
             ];
 
-            TestModel.create(_docs, function (err, models) {
+            TestModel.insert(_docs, function (err, models) {
                 expect(err).to.not.exist;
 
                 expect(models[0]).to.be.an.instanceOf(TestModel);
