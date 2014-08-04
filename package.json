@@ -8,8 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
-    "testci": "gulp testci",
-    "derp": "node derp.js"
+    "testci": "gulp testci"
   },
   "repository": {
     "type": "git",
