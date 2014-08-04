@@ -1,5 +1,4 @@
 var expect = require('chai').expect,
-    db = require('../fixtures/db'),
     kouch = require('../../lib/'),
     TestSchema = new kouch.Schema({
         _id: { type: String, key: true, auto: 'uuid' },
@@ -13,8 +12,10 @@ var expect = require('chai').expect,
         { _id: 'remove1', name: 'test doc 1' },
         { _id: 'remove2', name: 'test doc 2' },
         { _id: 'remove3', name: 'test doc 3' }
-    ],
-    noop = function () {};
+    ];
+
+// register our DB middleware
+require('../fixtures/db');
 
 describe('Kouch.Model', function () {
     before(function (done) {
@@ -236,6 +237,8 @@ describe('Kouch.Model', function () {
                     expect(err).to.be.an.instanceOf(Error);
                     expect(err.message).to.contain('The key does not exist on the server');
 
+                    expect(model).to.be.ok;
+
                     done();
                 });
             });
@@ -248,6 +251,8 @@ describe('Kouch.Model', function () {
                 TestModel.load('remove3', function (err, model) {
                     expect(err).to.be.an.instanceOf(Error);
                     expect(err.message).to.contain('The key does not exist on the server');
+
+                    expect(model).to.be.ok;
 
                     done();
                 });
@@ -311,6 +316,8 @@ describe('Kouch.Model', function () {
                     expect(models[2]).to.be.an.instanceOf(TestModel);
                     expect(models[2]._id).to.equal('multiInsert3');
                     expect(models[2]._doc).to.eql(_docs[2]);
+
+                    expect(_model).to.be.ok;
 
                     done();
                 });

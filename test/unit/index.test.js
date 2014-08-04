@@ -1,6 +1,8 @@
 var expect = require('chai').expect,
-    db = require('../fixtures/db'),
     kouch = require('../../lib/');
+
+// register our DB middleware
+require('../fixtures/db');
 
 describe('Kouch', function () {
     it('Should export the proper functions', function () {
@@ -50,7 +52,7 @@ describe('Kouch', function () {
     describe('general use', function () {
         it('General case usage', function () {
             var getDate = function (val) {
-                return (val.getMonth() + 1) + "/" + val.getDate() + "/" + val.getFullYear();
+                return (val.getMonth() + 1) + '/' + val.getDate() + '/' + val.getFullYear();
             };
 
             var CommentSchema = new kouch.Schema({
@@ -87,12 +89,12 @@ describe('Kouch', function () {
             });
 
             // instance methods on a created model
-            CommentSchema.methods.findSimilarTypes = function (cb) {
+            CommentSchema.methods.findSimilarTypes = function (/* cb */) {
                 // return this.model('Animal').find({ type: this.type }, cb);
             };
 
             // static method on the model created from this schema
-            CommentSchema.statics.findByName = function (name, cb) {
+            CommentSchema.statics.findByName = function (/* name, cb */) {
                 // this.find({ name: new RegExp(name, 'i') }, cb);
             };
 

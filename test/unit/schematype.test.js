@@ -1,5 +1,4 @@
 var expect = require('chai').expect,
-    db = require('../fixtures/db'),
     kouch = require('../../lib/'),
     TestSchema = new kouch.Schema({
         fieldRequired: { type: String, required: true },
@@ -9,6 +8,9 @@ var expect = require('chai').expect,
         fieldEnum: { type: String, enum: ['hey', 'there', 'you'] }
     }),
     TestModel = kouch.model('SchemaTypeTest', 'default', TestSchema);
+
+// register our DB middleware
+require('../fixtures/db');
 
 describe('Kouch.SchemaType', function () {
     describe('#ctor', function () {

@@ -53,7 +53,7 @@
     "eqnull"        : false,    // Tolerate use of `== null`.
     "esnext"        : false,    // Allow ES.next specific features such as `const` and `let`.
     "evil"          : false,    // Tolerate use of `eval`.
-    "expr"          : false,    // Tolerate `ExpressionStatement` as Programs.
+    "expr"          : true,     // Tolerate `ExpressionStatement` as Programs.
     "funcscope"     : false,    // Tolerate declarations of variables inside of control structures while accessing them later from the outside.
     "globalstrict"  : false,    // Allow global "use strict" (also enables 'strict').
     "iterator"      : false,    // Allow usage of __iterator__ property.
@@ -63,7 +63,7 @@
     "loopfunc"      : false,    // Allow functions to be defined within loops.
     "moz"           : false,    // Code that uses Mozilla JS extensions will set this to true
     "multistr"      : false,    // Tolerate multi-line strings.
-    "proto"         : false,    // Tolerate __proto__ property. This property is deprecated.
+    "proto"         : true,     // Tolerate __proto__ property. This property is deprecated.
     "scripturl"     : false,    // Tolerate script-targeted URLs.
     "smarttabs"     : false,    // Tolerate mixed tabs and spaces when the latter are used for alignmnent only.
     "shadow"        : false,    // Allows re-define variables later in code e.g. `var x=1; x=2;`.

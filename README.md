@@ -56,9 +56,18 @@ UserSchema.methods.x = function (cb) {
 };
 
 // static method on the model created from this schema
-// will be accessible at: UserModel.x
-UserSchema.statics.x = function (name, cb) {
-    // need a good example here...
+// will be accessible at: UserModel.authenticate
+UserSchema.statics.authenticate = function(username, password, cb) {
+    this.load(username, function (err, account) {
+        if (err) return cb(err);
+
+        bcrypt.compare(password, account.password, function (err, isMatch) {
+            if (err) return cb(err);
+            if (!isMatch) return cb(new Error('Your username and password combination is invalid.'));
+
+            cb(null, account);
+        });
+    });
 };
 
 // virtual property, not persisted to the DB

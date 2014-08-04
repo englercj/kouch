@@ -1,6 +1,8 @@
 var expect = require('chai').expect,
-    db = require('../fixtures/db'),
     kouch = require('../../lib/');
+
+// register our DB middleware
+require('../fixtures/db');
 
 describe('Kouch.Schema', function () {
     describe('#ctor', function () {
