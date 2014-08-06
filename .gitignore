@@ -16,11 +16,9 @@ npm-debug.log
 \#*#
 
 # project ignores
-build/
-node_modules/
-test/result/
 !.gitkeep
 *__temp
 .coverdata/
 .coverrun
-coverage.html
+build/
+node_modules/

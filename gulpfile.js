@@ -38,7 +38,7 @@ gulp.task('cover', function () {
             }))
             .pipe(cover.gather())
             .pipe(cover.format())
-            .pipe(gulp.dest('./'));
+            .pipe(gulp.dest('./.coverdata'));
 });
 
 /*****
