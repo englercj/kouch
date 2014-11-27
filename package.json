@@ -18,7 +18,7 @@
     "url": "https://github.com/englercj/kouch/issues"
   },
   "dependencies": {
-    "couchbase": "^2.0.0",
+    "couchbase": "^2.0.1",
     "hooks": "^0.3.2",
     "regexp-clone": "^0.0.1",
     "sliced": "^0.0.5",
@@ -26,10 +26,10 @@
   },
   "devDependencies": {
     "async": "^0.9.0",
-    "chai": "^1.9.1",
-    "gulp": "^3.8.7",
-    "gulp-coverage": "^0.3.31",
-    "gulp-jshint": "^1.8.4",
-    "gulp-mocha": "^1.1.1"
+    "chai": "^1.10.0",
+    "gulp": "^3.8.10",
+    "gulp-coverage": "^0.3.32",
+    "gulp-jshint": "^1.9.0",
+    "gulp-mocha": "^2.0.0"
   }
 }

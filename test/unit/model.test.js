@@ -228,9 +228,9 @@ describe('Kouch.Model', function () {
             TestModel.remove('remove1', function (err) {
                 expect(err).to.not.exist;
 
-                TestModel.load('remove1', function (err) {
-                    expect(err).to.be.an.instanceOf(Error);
-                    expect(err.message).to.contain('key not found');
+                TestModel.load('remove1', function (err, model) {
+                    expect(err).to.not.exist;
+                    expect(model).to.not.exist;
 
                     done();
                 });
