@@ -18,7 +18,7 @@
     "url": "https://github.com/englercj/kouch/issues"
   },
   "dependencies": {
-    "couchbase": "^2.0.1",
+    "couchbase": "^2.0.4",
     "hooks": "^0.3.2",
     "regexp-clone": "^0.0.1",
     "sliced": "^0.0.5",
