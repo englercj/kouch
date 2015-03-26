@@ -1,6 +1,6 @@
 {
   "name": "kouch",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Kouch is an ODM for couchase.",
   "homepage": "https://github.com/englercj/kouch",
   "author": "Chad Engler <chad@pantherdev.com>",
